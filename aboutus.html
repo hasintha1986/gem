@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Precious Gems</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #1a1a1a;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo h1 {
+            color: #fff;
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #c5a47e;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 2rem;
+        }
+
+        /* About Hero Section */
+        .about-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                        url('about-bg.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .about-hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* About Content */
+        .about-content {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .about-section {
+            margin-bottom: 4rem;
+        }
+
+        .about-section h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .about-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #c5a47e;
+        }
+
+        .about-section p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Team Section */
+        .team-section {
+            margin: 4rem 0;
+        }
+
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .team-member h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            color: #666;
+        }
+
+        /* Values Section */
+        .values-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            padding: 2rem;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .value-card i {
+            font-size: 2.5rem;
+            color: #c5a47e;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #c5a47e;
+        }
+
+        .social-icons a {
+            color: #fff;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #c5a47e;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #444;
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #1a1a1a;
+                flex-direction: column;
+                display: none;
+                padding: 1rem;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            .about-hero h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Scrolled Header */
+        header.scrolled {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: rgba(26,26,26,0.95);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Precious Gems</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="collection.html">Gems</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- About Hero -->
+        <section class="about-hero">
+            <div>
+                <h2>Our Story</h2>
+                <p>Passion for beauty, commitment to excellence</p>
+            </div>
+        </section>
+
+        <!-- About Content -->
+        <div class="about-content">
+            <section class="about-section">
+                <h3>Our History</h3>
+                <p>Founded in 2005, Precious Gems began as a small family business with a passion for extraordinary gemstones. What started as a modest collection has grown into one of the most respected names in luxury gemstones today.</p>
+                <p>Over two decades, we've built relationships with ethical miners and suppliers across the globe, from the sapphire mines of Sri Lanka to the emerald fields of Colombia. Our dedication to quality and authenticity has earned us the trust of collectors, investors, and jewelry lovers worldwide.</p>
+                <p>Today, Precious Gems represents the pinnacle of gemstone excellence, offering rare and exquisite specimens that meet the highest standards of clarity, color, cut, and carat weight.</p>
+            </section>
+
+            <section class="about-section team-section">
+                <h3>Our Expert Team</h3>
+                <p>Behind every gemstone at Precious Gems is a team of dedicated professionals with decades of combined experience in gemology, cutting, and design.</p>
+                
+                <div class="team-container">
+                    <div class="team-member">
+                        <img src="/api/placeholder/150/150" alt="Founder">
+                        <h4>Hasitha De Silva</h4>
+                        <p>Founder & Head Gemologist</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <img src="/api/placeholder/150/150" alt="Lead Designer">
+                        <h4>Amanda Chen</h4>
+                        <p>Lead Designer</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <img src="/api/placeholder/150/150" alt="Chief Gemologist">
+                        <h4>Robert Langford</h4>
+                        <p>Chief Gemologist</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-section">
+                <h3>Our Values</h3>
+                <p>At Precious Gems, our business is built on core principles that guide everything we do.</p>
+                
+                <div class="values-container">
+                    <div class="value-card">
+                        <i class="fas fa-gem"></i>
+                        <h4>Quality</h4>
+                        <p>We never compromise on the quality of our gemstones, ensuring every piece meets rigorous standards of excellence.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <i class="fas fa-handshake"></i>
+                        <h4>Ethical Sourcing</h4>
+                        <p>We are committed to ethical and sustainable sourcing practices, ensuring our gems are conflict-free.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <i class="fas fa-certificate"></i>
+                        <h4>Authenticity</h4>
+                        <p>Every gemstone comes with a certificate of authenticity and detailed documentation of its origin and characteristics.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>Email: dhsdesilva@gmail.com</p>
+                <p>Phone: +94772658261</p>
+                <div class="social-icons">
+                    <a href="https://web.facebook.com/hasinthas/" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/h_a_s_i._s/" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://x.com/hasinth_s" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://wa.me/15551234567" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Precious Gems. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.createElement('div');
+            menuToggle.className = 'menu-toggle';
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            document.querySelector('nav').appendChild(menuToggle);
+
+            menuToggle.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.toggle('active');
+            });
+        });
+
+        // Sticky Header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 100);
+        });
+    </script>
+</body>
+</html>

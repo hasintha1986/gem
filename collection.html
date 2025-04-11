@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gem Collection - Precious Gems</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #1a1a1a;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo h1 {
+            color: #fff;
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #c5a47e;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 2rem;
+        }
+
+        /* Collection Hero */
+        .collection-hero {
+            height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                        url('collection-bg.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .collection-hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: #f5f5f5;
+            border-radius: 10px;
+        }
+
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center; 
+        }
+
+        .filter-group label {
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        .filter-group select {
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: #c5a47e;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        /* Collection Grid */
+        .collection-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .gem-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gem-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .gem-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .gem-info {
+            padding: 1.5rem;
+        }
+
+        .gem-card h3 {
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .gem-card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .gem-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .gem-detail {
+            text-align: center;
+            flex: 1;
+        }
+
+        .gem-detail span {
+            display: block;
+        }
+
+        .detail-label {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .detail-value {
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+
+        .price {
+            display: block;
+            color: #c5a47e;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .buy-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background-color: #1a1a1a;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            background-color: #c5a47e;
+        }
+
+        /* Collection Categories */
+        .categories {
+            max-width: 1200px;
+            margin: 3rem auto;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #c5a47e;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #c5a47e;
+        }
+
+        .social-icons a {
+            color: #fff;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #c5a47e;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #444;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1001;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            border-radius: 10px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-gallery {
+            display: flex;
+            margin-bottom: 2rem;
+        }
+
+        .modal-main-image {
+            flex: 2;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .modal-thumbnails {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding-left: 1rem;
+        }
+
+        .modal-thumbnail {
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-thumbnail:hover,
+        .modal-thumbnail.active {
+            opacity: 1;
+        }
+
+        .modal-info {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .modal-details {
+            flex: 1;
+        }
+
+        .modal-specs {
+            flex: 1;
+        }
+
+        .modal-spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-actions {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .modal-actions button {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .add-to-inquiry {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .view-certificate {
+            background: #f5f5f5;
+            color: #1a1a1a;
+        }
+
+        .close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #1a1a1a;
+                flex-direction: column;
+                display: none;
+                padding: 1rem;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            .collection-hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .filter-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .modal-gallery {
+                flex-direction: column;
+            }
+
+            .modal-thumbnails {
+                flex-direction: row;
+                padding-left: 0;
+                padding-top: 1rem;
+            }
+
+            .modal-info {
+                flex-direction: column;
+            }
+        }
+
+        /* Scrolled Header */
+        header.scrolled {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: rgba(26,26,26,0.95);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Precious Gems</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="collection.html">Gems</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Collection Hero -->
+        <section class="collection-hero">
+            <div>
+                <h2>Our Gem Collection</h2>
+                <p>Discover the world's finest gemstones</p>
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <section class="filter-section">
+            <div class="filter-container">
+                <div class="filter-group">
+                    <label for="gem-type">Gem Type:</label>
+                    <select id="gem-type">
+                        <option value="all">All Types</option>
+                        <option value="diamond">Diamonds</option>
+                        <option value="ruby">Rubies</option>
+                        <option value="emerald">Emeralds</option>
+                        <option value="sapphire">Sapphires</option>
+                        <option value="other">Other Gems</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="price-range">Price Range:</label>
+                    <select id="price-range">
+                        <option value="all">All Prices</option>
+                        <option value="1000-5000">$1,000 - $5,000</option>
+                        <option value="5000-10000">$5,000 - $10,000</option>
+                        <option value="10000-20000">$10,000 - $20,000</option>
+                        <option value="20000+">$20,000+</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="sort-by">Sort By:</label>
+                    <select id="sort-by">
+                        <option value="featured">Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="newest">Newest</option>
+                    </select>
+                </div>
+                
+                <button class="filter-btn">Apply Filters</button>
+            </div>
+        </section>
+
+        <!-- Collection Content -->
+        <div class="collection-content">
+            <!-- Premium Gems -->
+            <section class="categories">
+                <h2 class="category-title">Premium Gems</h2>
+                <div class="gems-grid">
+                    <div class="gem-card">
+                        <img src="/api/placeholder/280/200" alt="Blue Diamond">
+                        <div class="gem-info">
+                            <h3>Blue Diamond</h3>
+                            <p>Rare and exquisite blue diamond of exceptional clarity</p>
+                            <div class="gem-details">
+                                <div class="gem-detail">
+                                    <span class="detail-label">Carat</span>
+                                    <span class="detail-value">3.2</span>
+                                </div>
+                                <div class="gem-detail">
+                                    <span class="detail-label">Cut</span>
+                                    <span class="detail-value">Oval</span>
+                                </div>
+                                <div class="gem-detail">
+                                    <span class="detail-label">Color</span>
+                                    <span class="detail-value">Blue</span>
+                                </div>
+                            </div>
+                            <span class="price">$48,500</span>
+                            <button class="buy-btn">View Details</button>
+                        </div>
+                    </div>
+                    
+                    <div class="gem-card">
+                        <img src="/api/placeholder/280/200" alt="Pigeon Blood Ruby">
+                        <div class="gem-info">
+                            <h3>Pigeon Blood Ruby</h3>
+                            <p>Exceptionally rare Burmese ruby with perfect color</p>
+                            <div class="gem-details">
+                                <div class="gem-detail">
+                                    <span class="detail-label">Carat</span>
+                                    <span class="detail-value">4.8</span>
+                                </div>
+                                <div class="gem-detail">
+                                    <span class="detail-label">Cut</span>
+                                    <span class="detail-value">Cushion</span>
+                                </div>
+                                <div class="gem-detail">
+                                    <span class="detail-label">Origin</span>
+                                    <span class="detail-value">Burma</span>
+                                </div>
+                            </div>
+                            <span class="price">$37,200</span>
+                            <button class="buy-btn">View Details</button>
+                        </div>
+                    </div>
+                    
+                    <div class="gem-card">
+                        <img src="/api/placeholder/280/200" alt="Colombian Emerald">
+                        <div class="gem-info">
+                            <h3>Colombian Emerald</h3>
+                            <p>Vivid green emerald from the legendary mines of Colombia</p>
+                            <div class="gem-details">
+                                <div class="gem-detail">
+                                    <span class="detail-label">Carat</span>
+                                    <span class="detail-value">5.7</span>
+                                </div>
+                                <div class="gem-detail">
+                                    <span class="detail-label">Cut</span>
+                                    <span class="detail-value">Octagon</span>
+                                </div>
+                                <div class="gem-detail">
+                                    <span class="detail-label">Origin</span>
+                                    <span class="detail-value">Colombia</span>
+                                </div>
